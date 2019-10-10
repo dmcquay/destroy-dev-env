@@ -5,18 +5,23 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev src/server.ts"
+    "start": "ts-node-dev src/server.ts",
+    "recreate-db": "docker-compose down && docker-compose up -d",
+    "db": "docker-compose exec db psql -U app todo"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",
     "@types/node": "^12.7.12",
+    "@types/pg": "^7.11.2",
+    "@types/uuid": "^3.4.5",
     "ts-node": "^8.4.1",
     "ts-node-dev": "^1.0.0-pre.43",
     "typescript": "^3.6.4"
