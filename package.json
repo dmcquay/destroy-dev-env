@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm -C api start\" \"npm -C ui start\""
+    "rebuild-infrastructure": "docker-compose down && docker-compose up --remove-orphans -d",
+    "start-all-apps": "concurrently \"npm -C api start\" \"npm -C ui start\"",
+    "start": "npm run rebuild-infrastructure && npm run start-all-apps"
   },
   "repository": {
     "type": "git",
