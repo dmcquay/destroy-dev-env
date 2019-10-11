@@ -27,7 +27,7 @@ app.get('/todos', async (req, res) => {
     res.send(todos)
 })
 
-app.listen(3000, (err) => {
+app.listen(3001, (err) => {
     if (err) throw err
-    console.log('http://localhost:3000/')
+    console.log('http://localhost:3001/')
 })
