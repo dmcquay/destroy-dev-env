@@ -43,6 +43,5 @@ export async function cacheFn<T>(fn: () => T, key:string): Promise<CacheResult<T
         cacheHit,
         payload
     }
-    console.log(result)
     return result
 }
