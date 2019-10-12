@@ -1,5 +1,6 @@
-- add external service to be mocked
+- add external service to be mocked (sentiment analyzer of todo text)
 - rabbit + listeners?
 - run another service that is not node. maybe .net core
 - add redis for caching something
 - upon start, display a page has links to places you might want to go and intro to docs
+- start page is also a status page? calls all health checks or something.
