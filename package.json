@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/dmcquay/destroy-dev-env#readme",
   "dependencies": {
-    "concurrently": "^5.0.0"
+    "concurrently": "^5.0.0",
+    "short-uuid": "^3.1.1"
   }
 }
