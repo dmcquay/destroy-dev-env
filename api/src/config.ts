@@ -10,8 +10,14 @@ const pgPoolConfig: PoolConfig = {
     port: parseInt(e.PG_PORT) || 5432
 }
 
+const redisConfig = {
+    host: e.REDIS_HOST || 'localhost',
+    port: parseInt(e.REDIS_PORT) || 6379
+}
+
 export default {
     greetingRecipientName: e.GREETING_RECIPIENT_NAME || 'World',
     pgPoolConfig,
+    redisConfig,
     sentimentApiBaseUrl: e.SENTIMENT_API_BASE_URL || 'http://localhost:3002/sentiment'
 }
