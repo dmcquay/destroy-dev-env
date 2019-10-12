@@ -41,5 +41,5 @@ app.get('/todos', async (req, res) => {
 
 app.listen(3001, (err) => {
     if (err) throw err
-    console.log('http://localhost:3001/')
+    console.log('API running at http://localhost:3001/')
 })
