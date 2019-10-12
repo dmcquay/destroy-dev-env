@@ -16,7 +16,7 @@ function App() {
 
   return (
     <ul>
-      {todos.map(todo => <li key={todo.id}>{todo.text} ({todo.sentiment})</li>)}
+      {todos.map(todo => <li key={todo.id}>{todo.text} ({todo.sentiment.payload} - cacheHit: {todo.sentiment.cacheHit ? 'yes' : 'no'})</li>)}
     </ul>
   );
 }

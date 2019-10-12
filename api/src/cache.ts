@@ -21,3 +21,28 @@ export async function set(key: string, value: string): Promise<undefined> {
         })
     })
 }
+
+interface CacheResult<T> {
+    cacheHit: boolean
+    payload: T
+}
+
+export async function cacheFn<T>(fn: () => T, key:string): Promise<CacheResult<T>> {
+    let payload
+    let cacheHit = false
+    const serializedValueFromCache = await get(key)
+    if (serializedValueFromCache) {
+        payload = JSON.parse(serializedValueFromCache)
+        cacheHit = true
+    } else {
+        payload = await fn()
+        const serializedValue = JSON.stringify(payload)
+        await set(key, serializedValue)
+    }
+    const result = {
+        cacheHit,
+        payload
+    }
+    console.log(result)
+    return result
+}

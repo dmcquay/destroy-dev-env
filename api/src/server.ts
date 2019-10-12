@@ -6,6 +6,7 @@ import config from './config'
 import {createTodo, getAllTodos} from './todo-repo'
 import {Todo} from './models'
 import {getSentiment} from './sentiment'
+import {cacheFn} from './cache'
 
 const app = express()
 
@@ -30,7 +31,8 @@ app.get('/todos', async (req, res) => {
     const todos = await getAllTodos()
     const todosWithSentiment = await Promise.all(
         todos.map(todo => {
-            return getSentiment(todo.text)
+            const fetchFn = () => getSentiment(todo.text)
+            return cacheFn(fetchFn, `todos-sentiment|${todo.id}`)
                .then(sentiment => ({...todo, sentiment}))
         }
     ))
