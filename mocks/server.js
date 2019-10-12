@@ -32,16 +32,27 @@ sentimentApi.post('/analyze-text', (req, res) => {
 
 app.use('/sentiment', sentimentApi)
 
+async function getStatus(url) {
+    let response
+    try {
+        response = await fetch('http://localhost:3001/todos')
+        return response.status === 200 ? 'healthy' : 'not healthy'
+    } catch(err) {
+        return 'not healthy'
+    }
+}
+
 app.get('/start', async (req, res) => {
-    const apiHealthResponse = await fetch('http://localhost:3001/todos')
-    const uiHealthResponse = await fetch('http://localhost:3000/')
     const readmeMarkdown = fs.readFileSync('../README.md').toString()
+    const statuses = {
+        api: await getStatus('http://localhost:3001/todos'),
+        ui: await getStatus('http://localhost:3000/')
+    }
+    const everythingIsHealthy = Object.values(statuses).filter(x => x !== 'healthy').length === 0
     res.render('start', {
         readme: marked(readmeMarkdown),
-        statuses: {
-            api: apiHealthResponse.status === 200 ? 'healthy' : 'not healthy',
-            ui: uiHealthResponse.status === 200 ? 'healthy' : 'not healthy'
-        }
+        statuses,
+        everythingIsHealthy
     })
 })
 

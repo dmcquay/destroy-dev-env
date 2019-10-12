@@ -1,6 +1,9 @@
 html
   head
     title Start Page
+    if !everythingIsHealthy
+        script.
+            setTimeout(() => document.location.reload(), 1000)
   body
     h1 Status
     table
