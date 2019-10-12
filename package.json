@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "rebuild-infrastructure": "docker-compose down && docker-compose up --remove-orphans -d",
-    "start-all-apps": "concurrently \"npm -C api start\" \"npm -C ui start\" \"./create-todos-forever.sh\"",
-    "start": "npm run rebuild-infrastructure && npm run start-all-apps"
+    "start": "concurrently \"npm -C api start\" \"npm -C ui start\" \"./create-todos-forever.sh\"",
+    "install-deps": "concurrently \"npm i\" \"npm -C api i\" \"npm -C ui i\"",
+    "everything": "concurrently \"npm run rebuild-infrastructure\" \"npm run install-deps\" && npm run start"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,5 @@
 - add external service to be mocked
-- add a UI. maybe run something like PM2 to run it all for us
 - rabbit + listeners?
-- insert a lot of seed data?
 - run another service that is not node. maybe .net core
 - add redis for caching something
 - upon start, display a page has links to places you might want to go and intro to docs
