@@ -4,3 +4,4 @@
 - add redis for caching something
 - upon start, display a page has links to places you might want to go and intro to docs
 - start page is also a status page? calls all health checks or something.
+- make UI look nicer just for fun

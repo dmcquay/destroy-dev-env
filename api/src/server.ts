@@ -5,6 +5,7 @@ import cors from 'cors'
 import config from './config'
 import {createTodo, getAllTodos} from './todo-repo'
 import {Todo} from './models'
+import {getSentiment} from './sentiment'
 
 const app = express()
 
@@ -27,7 +28,13 @@ app.get('/create-random-todo', async (req, res) => {
 
 app.get('/todos', async (req, res) => {
     const todos = await getAllTodos()
-    res.send(todos)
+    const todosWithSentiment = await Promise.all(
+        todos.map(todo => {
+            return getSentiment(todo.text)
+               .then(sentiment => ({...todo, sentiment}))
+        }
+    ))
+    res.send(todosWithSentiment)
 })
 
 app.listen(3001, (err) => {

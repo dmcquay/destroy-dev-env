@@ -11,6 +11,7 @@ const pgPoolConfig: PoolConfig = {
 }
 
 export default {
-    greetingRecipientName: e.GREETING_RECIPIENT_NAME || "World",
-    pgPoolConfig
+    greetingRecipientName: e.GREETING_RECIPIENT_NAME || 'World',
+    pgPoolConfig,
+    sentimentApiBaseUrl: e.SENTIMENT_API_BASE_URL || 'http://localhost:3002/sentiment'
 }
