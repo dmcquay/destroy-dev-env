@@ -2,5 +2,12 @@ html
   head
     title Start Page
   body
-    h1= foo
+    h1 Status
+    table
+        tr
+            th API
+            td= statuses.api
+        tr
+            th UI
+            td= statuses.ui
     div!= readme

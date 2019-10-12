@@ -3,6 +3,7 @@
 const express = require('express')
 const marked = require('marked')
 const fs = require('fs')
+const fetch = require('node-fetch')
 
 const app = express()
 app.set('view engine', 'pug')
@@ -31,9 +32,17 @@ sentimentApi.post('/analyze-text', (req, res) => {
 
 app.use('/sentiment', sentimentApi)
 
-app.get('/start', (req, res) => {
+app.get('/start', async (req, res) => {
+    const apiHealthResponse = await fetch('http://localhost:3001/todos')
+    const uiHealthResponse = await fetch('http://localhost:3000/')
     const readmeMarkdown = fs.readFileSync('../README.md').toString()
-    res.render('start', {foo: 'bar', readme: marked(readmeMarkdown)})
+    res.render('start', {
+        readme: marked(readmeMarkdown),
+        statuses: {
+            api: apiHealthResponse.status === 200 ? 'healthy' : 'not healthy',
+            ui: uiHealthResponse.status === 200 ? 'healthy' : 'not healthy'
+        }
+    })
 })
 
 app.listen(3002, () => {
