@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "rebuild-infrastructure": "docker-compose down && docker-compose up --remove-orphans -d",
-    "start": "concurrently \"npm -C api start\" \"npm -C ui start\" \"npm -C mocks start\" \"./create-todos-forever.sh\" \"sleep 2 && open http://localhost:3002/start\"",
+    "start": "concurrently \"npm -C api start\" \"npm -C ui start\" \"npm -C mocks start\" \"./create-todos-forever.sh\" \"sleep 2 && python -m webbrowser -t http://localhost:3002/start\"",
     "install-deps": "concurrently \"npm i\" \"npm -C api i\" \"npm -C ui i\" \"npm -C mocks i\"",
     "everything": "concurrently \"npm run rebuild-infrastructure\" \"npm run install-deps\" && npm run start"
   },
