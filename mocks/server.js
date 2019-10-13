@@ -35,7 +35,7 @@ app.use('/sentiment', sentimentApi)
 async function getStatus(url) {
     let response
     try {
-        response = await fetch('http://localhost:3001/todos')
+        response = await fetch(url)
         return response.status === 200 ? 'healthy' : 'not healthy'
     } catch(err) {
         return 'not healthy'
