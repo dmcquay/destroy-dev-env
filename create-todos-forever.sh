@@ -2,5 +2,5 @@
 
 while true; do
     curl localhost:3001/create-random-todo &> /dev/null
-    sleep 1
+    sleep 10
 done
