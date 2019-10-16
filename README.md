@@ -17,17 +17,3 @@ This is an example application that shows good practices for development environ
 # How to make changes to the database schema
 
 ...
-
-# Install on Alpine Linux
-
-- Install Docker and Docker Compose: https://wiki.alpinelinux.org/wiki/Docker
-- Install Git: `apk add git`
-
-Example:
-
-Uncomment community repo in /etc/apk/repositories.
-```
-apk update
-apk add docker git pip python-dev libffi-dev openssl-dev gcc libc-dev make
-pip install docker-compose
-```
