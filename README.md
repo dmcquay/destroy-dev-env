@@ -18,7 +18,7 @@ This is an example application that shows good practices for development environ
 
 - Set up your own tools using credentials found in docker-compose.yaml
 - Connect on the command line with `npm run db`
-- Execute a file on the command line with `echo $file | npm run run-sql`
+- Execute a file on the command line with `cat $file | npm run run-sql`
 
 ## How to make changes to the database schema
 
