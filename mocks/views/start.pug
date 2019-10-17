@@ -13,10 +13,11 @@ html
     div.container
       h1 Status
       table.table
-          tr
+          tr(class=statuses.api == 'healthy' ? 'success' : 'danger')
               th API
               td= statuses.api
-          tr
+          tr(class=statuses.ui == 'healthy' ? 'success' : 'danger')
               th UI
               td= statuses.ui
+      h1 README
       div!= readme
