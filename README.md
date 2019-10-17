@@ -1,6 +1,6 @@
 This is an example application that shows good practices for development environments.
 
-# Initial Setup
+## Initial Setup
 
 - Install Docker
 - Install Git
@@ -9,16 +9,26 @@ This is an example application that shows good practices for development environ
 - `npm i`
 - `npm everything`
 
-# Things to see
+## Things to see
 
 - View the [main UI](http://localhost:3000/)
 - [List TODOs from the API](http://localhost:3001/todos)
 
-# How to make changes to the database schema
+## How to connect to the dev database
 
-...
+- Set up your own tools using credentials found in docker-compose.yaml
+- Connect on the command line with `npm run db`
+- Execute a file on the command line with `echo $file | npm run run-sql`
 
-# Things to take note of in how this development environment operates
+## How to make changes to the database schema
+
+Add a new sequentially named file to the initdb directory.
+Either apply it manually with `cat initdb/03-* | npm run run-sql` or just run `npm run everything`.
+
+This is a simplistic solution (but it works just fine to get you started). You may want to use
+a migrations library (many ORMs provide these or there are standalone ones like liquibase).
+
+## Things to take note of in how this development environment operates
 
 1. Standard development config values are provied so you can start the app without customizing config. See config.js.
 1. Infrastructure we depend on is provided with the project instead of requring you to install and configure it globally. We use Docker Compose to define this.

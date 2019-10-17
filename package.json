@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "db": "docker-compose exec db psql -U app todo",
+    "run-sql": "docker-compose exec -T db psql -U app todo",
     "rebuild-infrastructure": "docker-compose down && docker-compose up --remove-orphans -d",
     "start": "concurrently \"npm -C api start\" \"npm -C ui start\" \"npm -C mocks start\" \"./create-todos-forever.sh\" \"sleep 2 && python -m webbrowser -t http://localhost:3002/start\"",
     "install-deps": "concurrently \"npm i\" \"npm -C api i\" \"npm -C ui i\" \"npm -C mocks i\"",
