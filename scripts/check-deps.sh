@@ -39,3 +39,13 @@ then
     echo "Recommended resolution: Run ${bold}nvm install${normal} in the root of the project"
     exit 1
 fi
+
+diff api/.env.standard-dev api/.env
+if [[ "$?" != "0" ]]
+then
+    echo "api/.env does not match api/.env-standard-dev (see diff above)"
+    echo "It is recommended to keep these in sync via a symlink."
+    echo "You can create one with this command: ln -s .env.standard-dev api/.env"
+    echo "Press enter to continue or Ctrl-c to stop and fix."
+    read
+fi
