@@ -1,23 +1,27 @@
+require("dotenv").config()
+
+import typedConfig from '@dmcquay/typed-config'
 import { PoolConfig } from 'pg'
 
+const config = typedConfig(process.env)
 const e = process.env
 
 const pgPoolConfig: PoolConfig = {
-    user: e.PG_USER || 'app',
-    host: e.PG_HOST || 'localhost',
-    database: e.PG_DATABASE || 'todo',
-    password: e.PG_PASSWORD || 'password',
-    port: parseInt(e.PG_PORT) || 5432
+    user: config.getString('PG_USER'),
+    host: config.getString('PG_HOST'),
+    database: config.getString('PG_DATABASE'),
+    password: config.getString('PG_PASSWORD'),
+    port: config.getInteger('PG_PORT')
 }
 
 const redisConfig = {
-    host: e.REDIS_HOST || 'localhost',
-    port: parseInt(e.REDIS_PORT) || 6379
+    host: config.getString('REDIS_HOST'),
+    port: config.getInteger('REDIS_PORT')
 }
 
 export default {
-    greetingRecipientName: e.GREETING_RECIPIENT_NAME || 'World',
+    greetingRecipientName: config.getString('GREETING_RECIPIENT_NAME'),
+    sentimentApiBaseUrl: config.getString('SENTIMENT_API_BASE_URL'),
     pgPoolConfig,
-    redisConfig,
-    sentimentApiBaseUrl: e.SENTIMENT_API_BASE_URL || 'http://localhost:3002/sentiment'
+    redisConfig
 }
