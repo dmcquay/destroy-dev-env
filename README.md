@@ -5,7 +5,6 @@ This is an example application that shows good practices for development environ
 - Install Docker
 - Install Git
 - Install Node (nvm recommended)
-- Clone Repo
 - `npm i`
 - `npm everything`
 
