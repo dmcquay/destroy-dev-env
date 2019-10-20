@@ -38,19 +38,41 @@ async function getStatus(url) {
     let response
     try {
         response = await fetch(url)
-        return response.status === 200 ? 'healthy' : 'not healthy'
+        const success = response.status === 200
+        const message = success ? 'Healthy' : 'Not healthy'
+        return {success, message}
     } catch(err) {
-        return 'not healthy'
+        return {success: false, message: 'Not healthy'}
     }
+}
+
+const {exec} = require('child_process')
+async function runApiTests() {
+    return new Promise((resolve, reject) => {
+        exec('npm test', {cwd: '../api'}, err => {
+            if (err) {
+                resolve({
+                    success: false,
+                    message: 'Tests not passing'
+                })
+            } else {
+                resolve({
+                    success: true,
+                    message: 'All tests passing'
+                })
+            }
+        })
+    })
 }
 
 app.get('/start', async (req, res) => {
     const readmeMarkdown = fs.readFileSync('../README.md').toString()
     const statuses = {
         api: await getStatus('http://localhost:3001/todos'),
-        ui: await getStatus('http://localhost:3000/')
+        ui: await getStatus('http://localhost:3000/'),
+        apiTests: await runApiTests()
     }
-    const everythingIsHealthy = Object.values(statuses).filter(x => x !== 'healthy').length === 0
+    const everythingIsHealthy = Object.values(statuses).filter(x => !x.success).length === 0
     res.render('start', {
         readme: marked(readmeMarkdown),
         statuses,
