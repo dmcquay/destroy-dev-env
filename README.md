@@ -6,7 +6,6 @@ This is an example application that shows good practices for development environ
 - Install Git
 - Install Node v10.x
 - Install Postgres
-- Clone Repo
 - `cd api && npm i`
 - `cd ui && npm i`
 - `cd mocks && npm i`
