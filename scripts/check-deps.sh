@@ -3,6 +3,7 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+# Check that docker is installed
 command -v docker &> /dev/null
 if [[ "$?" != "0" ]]
 then
@@ -11,6 +12,7 @@ then
     exit 1
 fi
 
+# Check that docker-compose is installed
 command -v docker-compose &> /dev/null
 if [[ "$?" != "0" ]]
 then
@@ -20,6 +22,7 @@ then
     exit 1
 fi
 
+# Check that node is installed
 command -v node &> /dev/null
 if [[ "$?" != "0" ]]
 then
@@ -28,6 +31,7 @@ then
     exit 1
 fi
 
+# Check for correct version of node
 expected_node_version=`cat .nvmrc`
 actual_node_version=`node --version`
 echo "$actual_node_version" | grep -e "^v${expected_node_version}" &> /dev/null
@@ -40,6 +44,13 @@ then
     exit 1
 fi
 
+# If .env does not exist, auto-create it.
+if [ ! -f api/.env ]
+then
+    ln -s .env.standard-dev api/.env
+fi
+
+# If .env does exist, but differs from standard, warn user.
 diff api/.env.standard-dev api/.env
 if [[ "$?" != "0" ]]
 then
