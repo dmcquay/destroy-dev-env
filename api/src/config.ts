@@ -4,7 +4,6 @@ import typedConfig from '@dmcquay/typed-config'
 import { PoolConfig } from 'pg'
 
 const config = typedConfig(process.env)
-const e = process.env
 
 const pgPoolConfig: PoolConfig = {
     user: config.getString('PG_USER'),
