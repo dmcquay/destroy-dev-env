@@ -6,7 +6,7 @@
   "scripts": {
     "db": "docker-compose exec db psql -U app todo",
     "run-sql": "docker-compose exec -T db psql -U app todo",
-    "rebuild-infrastructure": "docker-compose down && docker-compose up --remove-orphans -d",
+    "rebuild-infrastructure": "docker-compose down --remove-orphans && docker-compose up -d",
     "start": "concurrently \"npm -C api start\" \"npm -C ui start\" \"npm -C mocks start\" \"./scripts/create-todos-forever.sh\" \"sleep 2 && python -m webbrowser -t http://localhost:3002/start\"",
     "check-deps": "./scripts/check-deps.sh",
     "install-all": "concurrently \"npm i\" \"npm -C api i\" \"npm -C ui i\" \"npm -C mocks i\"",
