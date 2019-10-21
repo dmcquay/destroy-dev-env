@@ -6,12 +6,17 @@ This is an example application that shows good practices for development environ
 - Install Git
 - Install Node (nvm recommended)
 - `npm i`
-- `npm everything`
+- `npm run everything`
 
 ## Things to see
 
 - View the [main UI](http://localhost:3000/)
 - [List TODOs from the API](http://localhost:3001/todos)
+
+## Resetting your environment
+
+You can reset your environment at any time with `npm run everything`. It is recommended to do this frequently,
+such as every time you git pull.
 
 ## How to connect to the dev database
 
