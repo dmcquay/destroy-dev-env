@@ -22,7 +22,6 @@ function App() {
             <th>ID</th>
             <th>TODO</th>
             <th>Sentiment</th>
-            <th>Cache Hit</th>
           </tr>
         </thead>
         <tbody>
@@ -31,8 +30,7 @@ function App() {
               <tr key={todo.id}>
                 <td>{todo.id}</td>
                 <td>{todo.text}</td>
-                <td>{todo.sentiment.payload}</td>
-                <td>{todo.sentiment.cacheHit ? 'yes' : 'no'}</td>
+                <td>{todo.sentiment}</td>
               </tr>
             )
           })}
