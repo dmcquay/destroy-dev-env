@@ -10,7 +10,7 @@ This is an example application that shows good practices for development environ
 
 ## Setup Database
 
-- Apply all the scripts in `initdb` to your database
+- Apply `initdb/schema.sql` to your database
 
 ## Configure
 
