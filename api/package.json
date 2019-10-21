@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --require ts-node/register src/**/*.test.ts",
     "start": "ts-node-dev src/server.ts",
-    "recreate-db": "docker-compose down && docker-compose up -d",
+    "recreate-db": "docker-compose down --remove-orphans && docker-compose up -d",
     "db": "docker-compose exec db psql -U app todo"
   },
   "keywords": [],
