@@ -5,8 +5,7 @@ This is an example application that shows good practices for development environ
 - Install Docker
 - Install Git
 - Install Node (nvm recommended)
-- `npm i`
-- `npm run everything`
+- `npm run reset`
 
 ## Things to see
 
@@ -15,7 +14,7 @@ This is an example application that shows good practices for development environ
 
 ## Resetting your environment
 
-You can reset your environment at any time with `npm run everything`. It is recommended to do this frequently,
+You can reset your environment at any time with `npm run reset`. It is recommended to do this frequently,
 such as every time you git pull.
 
 ## How to connect to the dev database
@@ -27,10 +26,7 @@ such as every time you git pull.
 ## How to make changes to the database schema
 
 Add a new sequentially named file to the initdb directory.
-Either apply it manually with `cat initdb/03-* | npm run run-sql` or just run `npm run everything`.
-
-This is a simplistic solution (but it works just fine to get you started). You may want to use
-a migrations library (many ORMs provide these or there are standalone ones like liquibase).
+Either apply it manually with `cat initdb/03-* | npm run run-sql` or just run `npm run reset`.
 
 ## Things to take note of in how this development environment operates
 
