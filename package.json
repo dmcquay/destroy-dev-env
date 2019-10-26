@@ -1,0 +1,26 @@
+{
+  "name": "destroy-dev-env",
+  "version": "1.0.0",
+  "description": "This is an example application that shows good practices for development environments.",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm i && concurrently \"npm -C api i\" \"npm -C ui i\" \"npm -C mocks i\"",
+    "start": "concurrently \"npm -C api start\" \"npm -C ui start\" \"npm -C mocks start\"",
+    "reset": "./scripts/check-configs.sh && docker-compose down --remove-orphans && docker-compose up -d && npm run install-all && npm start",
+    "setup": "npm run reset"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmcquay/destroy-dev-env.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmcquay/destroy-dev-env/issues"
+  },
+  "homepage": "https://github.com/dmcquay/destroy-dev-env#readme",
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  }
+}

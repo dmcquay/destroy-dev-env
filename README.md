@@ -6,6 +6,7 @@ This is an example application that shows good practices for development environ
 
 - Install Git
 - Install Node v10.x
+- Install Docker
 - Install Postgres
 
 ## Setup Database
