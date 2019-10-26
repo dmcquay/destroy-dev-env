@@ -8,7 +8,8 @@
     "concurrently": "^5.0.0"
   },
   "scripts": {
-    "setup": "docker-compose down --remove-orphans && docker-compose up -d && ./scripts/check-configs.sh && npm run start",
+    "install-all": "npm i && concurrently \"npm -C api i\" \"npm -C ui i\" \"npm -C mocks i\"",
+    "setup": "npm run install-all && docker-compose down --remove-orphans && docker-compose up -d && ./scripts/check-configs.sh && npm run start",
     "reset": "npm run setup",
     "start": "concurrently \"npm -C api start\" \"npm -C ui start\" \"npm -C mocks start\""
   },
