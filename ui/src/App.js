@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
 
   async function loadTodos() {
-    const response = await fetch('http://localhost:3001/todos')
-    const todos = await response.json()
-    setTodos(todos)
+    const response = await fetch("http://localhost:3001/todos");
+    const todos = await response.json();
+    const prioritized = await fetch(
+      "http://localhost:5000/PrioritizeTodo",
+      todos
+    );
+    console.log(prioritized);
+    setTodos(todos);
   }
 
   useEffect(() => {
-    loadTodos()
+    loadTodos();
   }, []);
 
   return (
@@ -32,9 +37,9 @@ function App() {
                 <td>{todo.id}</td>
                 <td>{todo.text}</td>
                 <td>{todo.sentiment.payload}</td>
-                <td>{todo.sentiment.cacheHit ? 'yes' : 'no'}</td>
+                <td>{todo.sentiment.cacheHit ? "yes" : "no"}</td>
               </tr>
-            )
+            );
           })}
         </tbody>
       </table>

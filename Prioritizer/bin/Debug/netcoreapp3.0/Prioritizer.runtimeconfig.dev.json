@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/spencer-smithpluralsight.com/.dotnet/store/|arch|/|tfm|",
+      "/Users/spencer-smithpluralsight.com/.nuget/packages"
+    ]
+  }
+}
