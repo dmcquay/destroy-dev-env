@@ -7,12 +7,20 @@ function App() {
   async function loadTodos() {
     const response = await fetch("http://localhost:3001/todos");
     const todos = await response.json();
-    const prioritized = await fetch(
+    const prioritizedResponse = await fetch(
       "http://localhost:5000/PrioritizeTodo",
-      todos
+      {
+        method: "POST", // or 'PUT'
+        mode: "no-cors",
+        body: todos, // data can be `string` or {object}!
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
     );
-    console.log(prioritized);
-    setTodos(todos);
+    const prioritized = await prioritizedResponse.text();
+    console.log("stuff: " + prioritized);
+    setTodos(prioritized);
   }
 
   useEffect(() => {
@@ -33,7 +41,12 @@ function App() {
         <tbody>
           {todos.map(todo => {
             return (
-              <tr key={todo.id}>
+              <tr
+                key={todo.id}
+                style={{
+                  backgroundColor: todo.color
+                }}
+              >
                 <td>{todo.id}</td>
                 <td>{todo.text}</td>
                 <td>{todo.sentiment.payload}</td>

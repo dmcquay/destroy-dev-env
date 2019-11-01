@@ -23,10 +23,10 @@ namespace Prioritizer.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<TodoItem> Get(List<TodoItem> items)
+        [HttpPost]
+        public IEnumerable<TodoItem> Post([FromBody] List<TodoItem> items)
         {
-            _logger.LogError(null, null, "hello", items);
+            _logger.LogError(null, "hello" + items.First().ToString(), items);
             var rng = new Random();
             items.ForEach(item => item.Color = Colors[rng.Next(Colors.Length)]);
             return items.ToArray();
